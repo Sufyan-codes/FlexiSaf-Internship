@@ -1,52 +1,24 @@
-1. Unit Testing
-
-Goal: Test a single component or function in isolation.
-Tool: Jest + React Testing Library
+Unit Testing
+Goal: Test a single component or function in isolation. Tool: Jest + React Testing Library
 
 Example:
 
-// Button.test.jsx
-import { render, screen } from "@testing-library/react";
-import Button from "./Button";
+// Button.test.jsx import { render, screen } from "@testing-library/react"; import Button from "./Button";
 
-test("renders button text", () => {
-  render(<Button label="Click Me" />);
-  expect(screen.getByText("Click Me")).toBeInTheDocument();
-});
+test("renders button text", () => { render(); expect(screen.getByText("Click Me")).toBeInTheDocument(); });
 
-2. Integration Testing
-
-Goal: Test how components work together.
-Tool: React Testing Library
+Integration Testing
+Goal: Test how components work together. Tool: React Testing Library
 
 Example:
 
-// LoginForm.test.jsx
-import { render, screen, fireEvent } from "@testing-library/react";
-import LoginForm from "./LoginForm";
+// LoginForm.test.jsx import { render, screen, fireEvent } from "@testing-library/react"; import LoginForm from "./LoginForm";
 
-test("submits username and password", () => {
-  render(<LoginForm />);
-  fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "user" } });
-  fireEvent.change(screen.getByLabelText(/password/i), { target: { value: "pass" } });
-  fireEvent.click(screen.getByText(/login/i));
-  expect(screen.getByText(/welcome/i)).toBeInTheDocument();
-});
+test("submits username and password", () => { render(); fireEvent.change(screen.getByLabelText(/username/i), { target: { value: "user" } }); fireEvent.change(screen.getByLabelText(/password/i), { target: { value: "pass" } }); fireEvent.click(screen.getByText(/login/i)); expect(screen.getByText(/welcome/i)).toBeInTheDocument(); });
 
-3. End-to-End (E2E) Testing
-
-Goal: Test the whole app flow in a real browser.
-Tool: Cypress or Playwright
+End-to-End (E2E) Testing
+Goal: Test the whole app flow in a real browser. Tool: Cypress or Playwright
 
 Example (Cypress):
 
-// login.cy.js
-describe("Login flow", () => {
-  it("logs in successfully", () => {
-    cy.visit("/login");
-    cy.get("#username").type("user");
-    cy.get("#password").type("pass");
-    cy.get("button[type=submit]").click();
-    cy.contains("Welcome, user").should("be.visible");
-  });
-});
+// login.cy.js describe("Login flow", () => { it("logs in successfully", () => { cy.visit("/login"); cy.get("#username").type("user"); cy.get("#password").type("pass"); cy.get("button[type=submit]").click(); cy.contains("Welcome, user").should("be.visible"); }); });
